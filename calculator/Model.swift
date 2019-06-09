@@ -37,8 +37,12 @@ class Calculator {
     // 公開インターフェース
     public func InsertValue(value: Int) -> String {
         // 過程に追加する
-        // 無条件に入れてもとくに問題ない
-        progress += String(value)
+        // 0の場合は付け足す意味はないので上書きする
+        if Double(progress) == 0.0 {
+            progress = String(value)
+        } else {
+            progress += String(value)
+        }
         
         return progress
     }
@@ -62,7 +66,7 @@ class Calculator {
     
     public func Execute() -> String {
         // 初期状態ならなにもしない
-        if progress.isEmpty || progress == "0.0" {
+        if progress.isEmpty || Double(progress) == 0.0 {
            return progress
         }
         // 過程を解析して計算を実行する

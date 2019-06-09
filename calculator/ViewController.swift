@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    var calculator:Calculator = Calculator()
+    
     // 計算結果表示ラベル
     @IBOutlet weak var result: UILabel!
     
@@ -17,15 +19,16 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        print("ViewController.viewDidLoad")
     }
     
     // 数値ボタン押下イベント
     @IBAction func receivedValues(_ sender: UIButton) {
-        result.text = String(sender.tag)
+        // tagの値と数値が一致しているので，そのまま追加する
+        result.text = calculator.InsertValue(value: sender.tag)
     }
     
     @IBAction func reveivedOperators(_ sender: UIButton) {
+        // ボタン別に入力する演算子文字列を変える
         var operator_string = ""
         if sender.tag == 10 {
             operator_string = "/"
@@ -36,10 +39,14 @@ class ViewController: UIViewController {
         } else if sender.tag == 13 {
             operator_string = "+"
         }
-        result.text = operator_string
+        result.text = calculator.InsertOperator(op: operator_string)
     }
     
     @IBAction func receivedPerformances(_ sender: UIButton) {
-        print("receivedPerformances")
+        if sender.tag == 14 {
+            result.text = calculator.Execute()
+        } else if sender.tag == 15 {
+            result.text = calculator.Reset()
+        }
     }
 }
