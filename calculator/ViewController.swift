@@ -24,7 +24,7 @@ class ViewController: UIViewController {
     // 数値ボタン押下イベント
     @IBAction func receivedValues(_ sender: UIButton) {
         // tagの値と数値が一致しているので，そのまま追加する
-        result.text = calculator.InsertValue(value: sender.tag)
+        self.result.text = self.calculator.InsertValue(value: sender.tag)
     }
     
     @IBAction func reveivedOperators(_ sender: UIButton) {
@@ -39,14 +39,14 @@ class ViewController: UIViewController {
         } else if sender.tag == 13 {
             operator_string = "+"
         }
-        result.text = calculator.InsertOperator(op: operator_string)
+        self.result.text = self.calculator.InsertOperator(op: operator_string)
     }
     
     @IBAction func receivedPerformances(_ sender: UIButton) {
         if sender.tag == 14 {
-            result.text = calculator.Execute()
+            self.result.text = self.calculator.Execute()
         } else if sender.tag == 15 {
-            result.text = calculator.Reset()
+            self.result.text = self.calculator.Reset()
         }
     }
 }
