@@ -35,9 +35,15 @@
                                             <action selector="receivedPerformances:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KGZ-rP-TEP"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iiw-3A-GkX">
+                                    <button opaque="NO" tag="16" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iiw-3A-GkX">
                                         <rect key="frame" x="60" y="0.0" width="30" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <state key="normal" title="←">
+                                            <color key="titleColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="receivedPerformances:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2sh-DH-68r"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3kO-Po-9ED">
                                         <rect key="frame" x="120" y="0.0" width="30" height="48"/>

@@ -26,6 +26,16 @@ private func division(lhs: Double, rhs: Double) -> Double {
 private let operators:[String] = ["+", "-", "*", "/"]
 private let op_func_list:[(Double, Double) -> Double] = [plus, minus, multiple, division]
 
+// 末尾が演算子かどうか
+private func isSuffixOperator(string: String) -> Bool {
+    for reserved_op in operators {
+        if string.suffix(1) == reserved_op {
+            return true
+        }
+    }
+    return false
+}
+
 /*
  電卓の計算をするクラス
  基本的に値や演算子を正しさを確かめつつ文字列として溜め込んでいく(計算過程を表示するのが主な目的)
@@ -36,7 +46,7 @@ private let op_func_list:[(Double, Double) -> Double] = [plus, minus, multiple, 
 class Calculator {
     
     // 計算過程を文字列として保持する
-    private var progress:String = ""
+    private var progress:String = "0.0"
 
     // 公開インターフェース
     public func InsertValue(value: Int) -> String {
@@ -54,10 +64,8 @@ class Calculator {
     public func InsertOperator(op: String) -> String {
         // 過程の末尾が四則演算子の場合はなにもしない
         // TODO(fugashy) 負の値を入力するための処理を考える
-        for reserved_op in operators {
-            if self.progress.suffix(1) == reserved_op {
-                return self.progress
-            }
+        if isSuffixOperator(string: self.progress) {
+            return self.progress
         }
         // 四則演算子以外は何もしない
         if !operators.contains(op) {
@@ -73,6 +81,8 @@ class Calculator {
         // 初期状態ならなにもしない
         if self.progress.isEmpty || Double(self.progress) == 0.0 {
            return self.progress
+        } else if isSuffixOperator(string: self.progress) {
+            return self.progress
         }
         // 過程を解析して計算を実行する
         // String.splitやString.componentsでは複数のデリミタを扱うことができなかったため，
@@ -117,4 +127,14 @@ class Calculator {
         return self.progress
     }
     
+    public func Backspace() -> String {
+        // 空でない限り，一文字削除する
+        if self.progress.count != 0 {
+            // 最後のindexを得る
+            let final_index = self.progress.index(self.progress.startIndex, offsetBy: self.progress.count - 1)
+            // 最後のindexを含まないようにする
+            self.progress = String(self.progress[self.progress.startIndex ..< final_index])
+        }
+        return self.progress
+    }
 }

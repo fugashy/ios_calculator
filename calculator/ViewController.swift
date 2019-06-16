@@ -47,6 +47,8 @@ class ViewController: UIViewController {
             self.result.text = self.calculator.Execute()
         } else if sender.tag == 15 {
             self.result.text = self.calculator.Reset()
+        } else if sender.tag == 16 {
+            self.result.text = self.calculator.Backspace()
         }
     }
 }
